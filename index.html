@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- <script src="./gun-master/gun.min.js"></script> import Gun -->
+  <script src="https://cdn.jsdelivr.net/npm/gun/examples/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <title>Gun Basics</title>
+</head>
+<body>
+    <h1 style="justify-content: center;">Gun DB</h1>
+    <p>name of car : <sapn id="name"></sapn></p>
+    <input type ='text' id='text' placeholder='enter  here' onchange ='changeData()'></input>
+</body>
+<script>
+    var mak = document.getElementById('text').value;
+    const db = Gun();
+
+    db.get('123').once(v => {
+        document.getElementById('name').innerHTML = v.make;
+    });
+
+
+    function changeData(){
+
+        var mak = document.getElementById('text').value;
+        console.log(mak);
+
+         db.get("123").put({
+            make: mak,
+            model: "Camry",
+        }).once(v => {
+        document.getElementById('name').innerHTML = v.make;
+    })
+    }
+
+
+</script>
+</html>
